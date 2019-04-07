@@ -12,12 +12,11 @@ def MultiplyDistributions(endpoint, distributions):
     for i in range(0,len(distributions)):
         msg['payload']['weights'].append(distributions[i].dict())
 
-    reply = endpoint.SendRequest(msg)
+    (reply, success) = endpoint.SendRequest(msg)
 
-    if reply['status'] == 'OK':
+    if success
         return reply['payload']
     else:
-        warnings.warn('Multiply Distributions request failed')
         return {}
 
 

@@ -42,7 +42,13 @@ class Endpoint(object):
         self.socket.send_json(request)# , flags=zmq.NOBLOCK)
 
         # it is up to the caller to figure out what to do with the reply
-        return( self.socket.recv_json() )
+        reply = self.socket.recv_json() 
+
+        success = False
+        if reply['status'] == 'OK':
+            success = True
+
+        return (reply, success)
 
 
     def Status(self):
@@ -54,9 +60,28 @@ class Endpoint(object):
         msg['request'] = 'status'
         msg['payload'] = ''
 
-        reply = self.SendRequest(msg)
+        (r,s) = self.SendRequest(msg)
 
-        return(reply)
+        if s:
+            return(reply)
+        else:
+            return {}
+
+    def RequestSolve(self):
+        """
+        Request full batch solve.
+        """
+        msg = {}
+        msg['request'] = 'batchSolve'
+        msg['payload'] = ''
+
+        (r,s) = self.SendRequest(msg)
+
+        if s:
+            return(reply)
+        else:
+            return {}
+
 
 
 
