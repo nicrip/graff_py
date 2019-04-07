@@ -14,7 +14,7 @@ if __name__ == '__main__':
     """
 
     """
-    e.Connect('tcp://192.168.0.102:5555')
+    e.Connect('tcp://127.0.0.1:5555')
     print(e.Status())
 
     # Add the first pose x0
