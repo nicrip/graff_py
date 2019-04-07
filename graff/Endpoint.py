@@ -44,7 +44,13 @@ class Endpoint(object):
         # it is up to the caller to figure out what to do with the reply
         reply = self.socket.recv_json() 
 
-        return (reply['status'] == 'OK', success)
+        success = False
+        if reply['status'] == 'OK':
+            success = True
+        else:
+            reply = {}
+
+        return (reply, success )
 
 
     def Status(self):
@@ -59,7 +65,7 @@ class Endpoint(object):
         (r,s) = self.SendRequest(msg)
 
         if s:
-            return(reply)
+            return(r)
         else:
             return {}
 
@@ -74,7 +80,7 @@ class Endpoint(object):
         (r,s) = self.SendRequest(msg)
 
         if s:
-            return(reply)
+            return(r)
         else:
             return {}
 
@@ -92,11 +98,11 @@ class Endpoint(object):
             msg['request'] = 'getVarMAPMax'
         else:
             msg['request'] = 'getVarMAPMean'
-         msg['payload'] = variable
+        msg['payload'] = variable
         (r,s) = self.SendRequest(msg)
 
         if s:
-            return(reply)
+            return(r)
         else:
             return {}
 
@@ -114,7 +120,7 @@ class Endpoint(object):
         (r,s) = self.SendRequest(msg)
 
         if s:
-            return(reply)
+            return(r)
         else:
             return {}
 

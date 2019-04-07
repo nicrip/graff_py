@@ -26,7 +26,7 @@ if __name__ == '__main__':
 
     rep = MultiplyDistributions(e, [b1,b2])
     print(rep)
-    x = np.array(rep['payload']['points'] )
+    x = np.array(rep['points'] )
     # plt.stem(x, np.ones(len(x)) )
     plt.hist(x, bins = int(len(x)/10.0))
     plt.show()

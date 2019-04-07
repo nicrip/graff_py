@@ -14,7 +14,7 @@ def MultiplyDistributions(endpoint, distributions):
 
     (reply, success) = endpoint.SendRequest(msg)
 
-    if success
+    if success:
         return reply['payload']
     else:
         return {}
