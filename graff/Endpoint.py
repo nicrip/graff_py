@@ -44,11 +44,7 @@ class Endpoint(object):
         # it is up to the caller to figure out what to do with the reply
         reply = self.socket.recv_json() 
 
-        success = False
-        if reply['status'] == 'OK':
-            success = True
-
-        return (reply, success)
+        return (reply['status'] == 'OK', success)
 
 
     def Status(self):
@@ -81,6 +77,48 @@ class Endpoint(object):
             return(reply)
         else:
             return {}
+
+
+    def GetVarMAP(self, variable, estimate ):
+        """
+        Get the maximum-based MAP estimate for the given variable
+
+        variable - the variable label
+        estimate - type of estimate: 'max' or 'mean' (default)
+        """
+
+        msg = {}
+        if 'max' == estimate:
+            msg['request'] = 'getVarMAPMax'
+        else:
+            msg['request'] = 'getVarMAPMean'
+         msg['payload'] = variable
+        (r,s) = self.SendRequest(msg)
+
+        if s:
+            return(reply)
+        else:
+            return {}
+
+
+    def Evaluate(self, variables,locations):
+        """
+        request evaluation of one or more variables at a set of locations
+        """
+        msg = {}
+        msg['request'] = 'evaluate'
+        msg['payload'] = {}
+        msg['payload']['variables'] = variables
+        msg['payload']['locations'] = locations
+
+        (r,s) = self.SendRequest(msg)
+
+        if s:
+            return(reply)
+        else:
+            return {}
+
+
 
 
 
