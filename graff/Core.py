@@ -1,7 +1,8 @@
-
+import warnings
 
 def MultiplyDistributions(endpoint, distributions):
     """
+    Multiply two or more distributions.
     """
     msg = {}
     msg['request'] = 'multiplyDistributions'
@@ -11,24 +12,33 @@ def MultiplyDistributions(endpoint, distributions):
     for i in range(0,len(distributions)):
         msg['payload']['weights'].append(distributions[i].dict())
 
-    return(endpoint.SendRequest(msg))
+    reply = endpoint.SendRequest(msg)
+
+    if reply['status'] == 'OK':
+        return reply['payload']
+    else:
+        warnings.warn('Multiply Distributions request failed')
+        return {}
 
 
 def AddVariable(endpoint, variable ):
     """
+    Add a variable.
     """
     msg = {}
     msg['request'] = 'addVariable'
-    msg['payload'] = variable
+    msg['payload'] = variable.dict()
 
     return(endpoint.SendRequest(msg))
 
+
 def AddFactor(endpoint, factor):
     """
+    Add a factor.
     """
     msg = {}
     msg['request'] = 'addFactor'
-    msg['payload'] = factor
+    msg['payload'] = factor.dict()
 
     return(endpoint.SendRequest(msg))
 
