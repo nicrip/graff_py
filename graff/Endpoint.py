@@ -1,4 +1,5 @@
 """
+
 """
 
 import zmq
@@ -37,11 +38,9 @@ class Endpoint(object):
         print(request)
         self.socket.send_json(request)# , flags=zmq.NOBLOCK)
 
-        # wait for the reply
-        # TODO: check for what flags we need?
-        reply = self.socket.recv_json()
+        # it is up to the caller to figure out what to do with the reply
+        return( self.socket.recv_json() )
 
-        # TODO: check for payload==OK.
 
 
     def Status(self):
