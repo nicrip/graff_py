@@ -53,6 +53,7 @@ class Endpoint(object):
         return (reply, success )
 
 
+
     def Status(self):
         """
         Request endpoint status.
@@ -60,6 +61,22 @@ class Endpoint(object):
 
         msg = {}
         msg['request'] = 'status'
+        msg['payload'] = ''
+
+        (r,s) = self.SendRequest(msg)
+
+        if s:
+            return(r)
+        else:
+            return {}
+
+    def ResetFG(self):
+        """
+        Clear factor graph from endpoint.
+        """
+
+        msg = {}
+        msg['request'] = 'resetfg'
         msg['payload'] = ''
 
         (r,s) = self.SendRequest(msg)
