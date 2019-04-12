@@ -26,7 +26,7 @@ class Normal(object):
         else:
             d['distType'] = 'MvNormal'
 
-        d['mean'] = self.mean
-        d['cov'] = self.cov
+        d['mean'] = self.mean.tolist()
+        d['cov'] = self.cov.tolist()
 
         return(d)

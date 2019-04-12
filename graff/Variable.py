@@ -1,5 +1,5 @@
 class Variable(object):
-    def __init__(self, label, varType, N, userLabels):
+    def __init__(self, label, varType, N=50, userLabels=['']):
         """
         Variable object
         label - the variable name (e.g x0)

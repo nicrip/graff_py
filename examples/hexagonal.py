@@ -3,6 +3,8 @@ sys.path.append('..')
 
 import numpy as np
 from graff.Endpoint import Endpoint
+from graff.Variable import Variable
+from graff.Factor import Factor
 from graff.Distribution.Normal import Normal
 from graff.Distribution.SampleWeights import SampleWeights
 from graff.Distribution.BallTreeDensity import BallTreeDensity

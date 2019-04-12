@@ -17,8 +17,9 @@ class Factor(object):
         d['variables'] = self.variables
         d['factor'] = {}
         d['factor']['measurement'] = {}
-        for i in range(0, len(self.measurement)):
-            d['factor']['measurement'] = self.measurement[i].dict()
+        # for i in range(0, len(self.measurement)):
+        #     d['factor']['measurement'] = self.measurement[i].dict()
+        d['factor']['measurement'] = self.measurement.dict()
 
         return(d)
 
