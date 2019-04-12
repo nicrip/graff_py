@@ -86,6 +86,22 @@ class Endpoint(object):
         else:
             return {}
 
+    def SaveCheckpoint(self):
+        """
+        Save the factor graph remotely
+        """
+
+        msg = {}
+        msg['request'] = 'savecheckpoint'
+        msg['payload'] = ''
+
+        (r,s) = self.SendRequest(msg)
+
+        if s:
+            return(r)
+        else:
+            return {}
+
     def RequestSolve(self):
         """
         Request full batch solve.
