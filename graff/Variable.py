@@ -15,8 +15,8 @@ class Variable(object):
     def dict(self):
         d = {}
         d['label'] = self.label
-        d['varType'] = self.varType
+        d['variableType'] = self.varType
         d['N'] = self.N
-        d['userLabels'] = self.userLabels
+        d['labels'] = self.userLabels
 
         return(d)
